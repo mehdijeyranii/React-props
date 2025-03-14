@@ -10,6 +10,26 @@ function Status({ isOnline }: { isOnline: boolean }) {
   return <p>Status: {isOnline ? "Online" : "Offline"}</p>;
 }
 
+const UserInfo = ({
+  name,
+  age,
+  isOnline,
+}: {
+  name: string;
+  age: number;
+  isOnline: boolean;
+}) => {
+  return (
+    <div>
+      <h3>Name: {name}</h3>
+      <p>Age: {age}</p>
+      <p style={{ backgroundColor: isOnline ? "green" : "transparent" }}>
+        Status: {isOnline ? "Online" : "Offline"}
+      </p>
+    </div>
+  );
+};
+
 const App = () => {
   return (
     <div>
@@ -19,6 +39,8 @@ const App = () => {
       <Age age={34} />
       <Status isOnline />
       <Status isOnline={false} />
+      <UserInfo name="Ali" age={24} isOnline={true} />
+      <UserInfo name="Sara" age={24} isOnline={false} />
     </div>
   );
 };
