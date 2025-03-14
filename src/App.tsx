@@ -6,6 +6,10 @@ function Age({ age }: { age: number }) {
   return <p>Your age is {age}</p>;
 }
 
+function Status({ isOnline }: { isOnline: boolean }) {
+  return <p>Status: {isOnline ? "Online" : "Offline"}</p>;
+}
+
 const App = () => {
   return (
     <div>
@@ -13,6 +17,8 @@ const App = () => {
       <hr />
       <Greeting name="Mehdi" />
       <Age age={34} />
+      <Status isOnline />
+      <Status isOnline={false} />
     </div>
   );
 };
