@@ -30,6 +30,16 @@ const UserInfo = ({
   );
 };
 
+const ShoppingList = ({ items }: { items: string[] }) => {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </ul>
+  );
+};
+
 const App = () => {
   return (
     <div>
@@ -41,6 +51,8 @@ const App = () => {
       <Status isOnline={false} />
       <UserInfo name="Ali" age={24} isOnline={true} />
       <UserInfo name="Sara" age={24} isOnline={false} />
+      <hr />
+      <ShoppingList items={["Apple", "Banana", "Orange"]} />
     </div>
   );
 };
