@@ -40,7 +40,18 @@ const ShoppingList = ({ items }: { items: string[] }) => {
   );
 };
 
+const Profile = ({ user }: { user: { name: string; age: number } }) => {
+  return (
+    <div>
+      <h3>Name: {user.name}</h3>
+      <p>Age: {user.age}</p>
+    </div>
+  );
+};
+
 const App = () => {
+  const userData = { name: "Milad Khojaste", age: 35 };
+
   return (
     <div>
       <h1>Hello, World!</h1>
@@ -53,6 +64,8 @@ const App = () => {
       <UserInfo name="Sara" age={24} isOnline={false} />
       <hr />
       <ShoppingList items={["Apple", "Banana", "Orange"]} />
+      <hr />
+      <Profile user={userData} />
     </div>
   );
 };
