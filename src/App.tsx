@@ -49,8 +49,16 @@ const Profile = ({ user }: { user: { name: string; age: number } }) => {
   );
 };
 
+const Button = ({ onClick }: { onClick: () => void }) => {
+  return <button onClick={onClick}>Click Me!</button>;
+};
+
 const App = () => {
   const userData = { name: "Milad Khojaste", age: 35 };
+
+  const handleClick = () => {
+    alert("Button Clicked!");
+  };
 
   return (
     <div>
@@ -66,6 +74,8 @@ const App = () => {
       <ShoppingList items={["Apple", "Banana", "Orange"]} />
       <hr />
       <Profile user={userData} />
+      <hr />
+      <Button onClick={handleClick} />
     </div>
   );
 };
