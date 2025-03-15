@@ -1,25 +1,19 @@
-const UserCard = ({
-  name,
-  age,
-  email,
-}: {
-  name: string;
-  age: number;
-  email: string;
-}) => {
+const TodoList = ({ tasks }: { tasks: string[] }) => {
   return (
-    <div>
-      <h1>Name: {name}</h1>
-      <p>Your age is {age}</p>
-      <p>Your email is {email}</p>
-    </div>
+    <ul>
+      {tasks.map((task, index) => (
+        <li key={index}>{task}</li>
+      ))}
+    </ul>
   );
 };
 
 const App = () => {
   return (
     <div>
-      <UserCard name="Ali" age={25} email="ali34@gmail.com" />
+      <TodoList
+        tasks={["Buy groceries", "Complete project", "Go for a walk"]}
+      />
     </div>
   );
 };
