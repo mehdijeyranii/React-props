@@ -1,19 +1,12 @@
-const TodoList = ({ tasks }: { tasks: string[] }) => {
-  return (
-    <ul>
-      {tasks.map((task, index) => (
-        <li key={index}>{task}</li>
-      ))}
-    </ul>
-  );
+const UserStatus = ({ isOnline }: { isOnline: boolean }) => {
+  return <p>User is {isOnline ? "Online" : "Offline"}</p>;
 };
 
 const App = () => {
   return (
     <div>
-      <TodoList
-        tasks={["Buy groceries", "Complete project", "Go for a walk"]}
-      />
+      <UserStatus isOnline />
+      <UserStatus isOnline={false} />
     </div>
   );
 };
