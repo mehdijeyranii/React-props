@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 const Greeting = ({ name }: { name: string }) => {
   return <h2>Hello, {name}</h2>;
 };
@@ -53,6 +55,10 @@ const Button = ({ onClick }: { onClick: () => void }) => {
   return <button onClick={onClick}>Click Me!</button>;
 };
 
+const Card = ({ children }: { children: ReactNode }) => {
+  return <div>{children}</div>;
+};
+
 const App = () => {
   const userData = { name: "Milad Khojaste", age: 35 };
 
@@ -76,6 +82,11 @@ const App = () => {
       <Profile user={userData} />
       <hr />
       <Button onClick={handleClick} />
+      <hr />
+      <Card>
+        <h2>Title</h2>
+        <p>This is a description inside the card</p>
+      </Card>
     </div>
   );
 };
