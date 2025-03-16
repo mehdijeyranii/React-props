@@ -4,7 +4,8 @@ const App = () => {
   const [items, setItems] = useState<number[]>([1, 2, 3]);
 
   const addItem = () => {
-    setItems((prevItem) => [...prevItem, 4]);
+    const nextItem = items.length > 0 ? items[items.length - 1] + 1 : 1;
+    setItems((prevItem) => [...prevItem, nextItem]);
   };
 
   return (
