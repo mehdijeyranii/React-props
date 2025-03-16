@@ -1,30 +1,17 @@
-import { useState } from "react";
+interface Props {
+  title: string;
+  price: number;
+  inStock: boolean;
+}
 
-const Counter = ({ initialCount }: { initialCount: number }) => {
-  const [count, setCount] = useState(initialCount);
-
-  const handleIncrease = () => setCount((prev) => prev + 1);
-  const handleDecrease = () => setCount((prev) => (prev > 0 ? prev - 1 : 0));
-  const handleRest = () => setCount(initialCount);
+const ProductCard = (props: Props) => {
+  const { title, price, inStock } = props;
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2>Counter</h2>
-      <p style={{ fontSize: "24px" }}>Count: {count}</p>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "10px",
-        }}
-      >
-        <button onClick={handleIncrease}>Increase</button>
-        <button onClick={handleDecrease} disabled={count === 0}>
-          Decrease
-        </button>
-        <button onClick={handleRest}>Rest</button>
-      </div>
+    <div>
+      <h2>Product: {title}</h2>
+      <p>Price: ${price}</p>
+      <p>Status: {inStock ? "Available" : "Out of Stock"}</p>
     </div>
   );
 };
@@ -32,7 +19,8 @@ const Counter = ({ initialCount }: { initialCount: number }) => {
 const App = () => {
   return (
     <div>
-      <Counter initialCount={5} />
+      <ProductCard title="Laptop" price={1200} inStock={true} />
+      <ProductCard title="Headphone" price={500} inStock={false} />
     </div>
   );
 };
