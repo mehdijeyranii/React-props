@@ -23,9 +23,16 @@ const App = () => {
     });
   };
 
+  const updateItem = (oldItem: number, newItem: number) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => (item === oldItem ? newItem : item))
+    );
+  };
+
   return (
     <div>
       <button onClick={addItem}>Add Item</button>
+      <button onClick={() => updateItem(3, 40)}>Update Item 3 to 40</button>
       <ul>
         {items.map((item) => (
           <li key={item}>
