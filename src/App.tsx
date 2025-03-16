@@ -1,20 +1,21 @@
 import { useState } from "react";
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <p>Current number: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increase</button>
-    </div>
-  );
-};
-
 const App = () => {
+  const [items, setItems] = useState<number[]>([1, 2, 3]);
+
+  const addItem = () => {
+    const nextItem = items.length > 0 ? items[items.length - 1] + 1 : 1;
+    setItems((prevItem) => [...prevItem, nextItem]);
+  };
+
   return (
     <div>
-      <Counter />
+      <button onClick={addItem}>Add Item</button>
+      <ul>
+        {items.map((item) => (
+          <li key={item}>Item: {item}</li>
+        ))}
+      </ul>
     </div>
   );
 };
