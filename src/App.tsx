@@ -1,11 +1,18 @@
 import { useState } from "react";
 
 const App = () => {
-  const [items, setItems] = useState<number[]>([1, 2, 3]);
+  const savedItems = localStorage.getItem("items");
+  const initialItems = savedItems ? JSON.parse(savedItems) : [];
+  const [items, setItems] = useState<number[]>(initialItems);
 
   const addItem = () => {
     const nextItem = items.length > 0 ? items[items.length - 1] + 1 : 1;
-    setItems((prevItem) => [...prevItem, nextItem]);
+    
+    setItems((prevItem) => {
+      const newItems = [...prevItem, nextItem];
+      localStorage.setItem("items", JSON.stringify(newItems));
+      return newItems;
+    });
   };
 
   return (
