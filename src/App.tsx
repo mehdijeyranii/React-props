@@ -4,6 +4,9 @@ const App = () => {
   const savedItems = localStorage.getItem("items");
   const initialItems = savedItems ? JSON.parse(savedItems) : [1, 2, 3];
   const [items, setItems] = useState<number[]>(initialItems);
+  const [newItemValues, setNewItemValues] = useState<{ [key: number]: number }>(
+    {}
+  );
 
   const addItem = () => {
     const nextItem = items.length > 0 ? items[items.length - 1] + 1 : 1;
@@ -23,21 +26,45 @@ const App = () => {
     });
   };
 
-  const updateItem = (oldItem: number, newItem: number) => {
-    setItems((prevItems) =>
-      prevItems.map((item) => (item === oldItem ? newItem : item))
-    );
+  const updateItem = (oldItem: number) => {
+    const newItem = newItemValues[oldItem];
+    if (newItem === undefined || newItem === 0) return;
+
+    setItems((prevItems) => {
+      const updateItem = prevItems.map((item) =>
+        item === oldItem ? newItem : item
+      );
+      localStorage.setItem("items", JSON.stringify(updateItem));
+      return updateItem;
+    });
+  };
+
+  const handleInputChange = (item: number, value: number) => {
+    setNewItemValues((prevState) => ({
+      ...prevState,
+      [item]: value,
+    }));
   };
 
   return (
     <div>
       <button onClick={addItem}>Add Item</button>
-      <button onClick={() => updateItem(3, 40)}>Update Item 3 to 40</button>
       <ul>
         {items.map((item) => (
           <li key={item}>
             Item: {item}
             <button onClick={() => removeItem(item)}>Remove</button>
+            <div>
+              <input
+                type="number"
+                value={newItemValues[item]}
+                onChange={(e) =>
+                  handleInputChange(item, Number(e.target.value))
+                }
+                placeholder="Enter new item value"
+              />
+              <button onClick={() => updateItem(item)}>Update</button>
+            </div>
           </li>
         ))}
       </ul>
