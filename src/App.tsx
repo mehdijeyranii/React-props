@@ -1,17 +1,12 @@
-interface Props {
-  title: string;
-  price: number;
-  inStock: boolean;
-}
+import { useState } from "react";
 
-const ProductCard = (props: Props) => {
-  const { title, price, inStock } = props;
+const Counter = () => {
+  const [count, setCount] = useState(0);
 
   return (
     <div>
-      <h2>Product: {title}</h2>
-      <p>Price: ${price}</p>
-      <p>Status: {inStock ? "Available" : "Out of Stock"}</p>
+      <p>Current number: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
     </div>
   );
 };
@@ -19,8 +14,7 @@ const ProductCard = (props: Props) => {
 const App = () => {
   return (
     <div>
-      <ProductCard title="Laptop" price={1200} inStock={true} />
-      <ProductCard title="Headphone" price={500} inStock={false} />
+      <Counter />
     </div>
   );
 };
