@@ -16,16 +16,22 @@ const App = () => {
   };
 
   const removeItem = (itemToRemove: number) => {
-    setItems((prevItems) => prevItems.filter((item) => item !== itemToRemove));
+    setItems((prevItems) => {
+      const newItems = prevItems.filter((item) => item !== itemToRemove);
+      localStorage.setItem("items", JSON.stringify(newItems));
+      return newItems;
+    });
   };
 
   return (
     <div>
       <button onClick={addItem}>Add Item</button>
-      <button onClick={() => removeItem(3)}>Remove Item 3</button>
       <ul>
         {items.map((item) => (
-          <li key={item}>Item: {item}</li>
+          <li key={item}>
+            Item: {item}
+            <button onClick={() => removeItem(item)}>Remove</button>
+          </li>
         ))}
       </ul>
     </div>
