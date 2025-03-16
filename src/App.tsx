@@ -1,50 +1,50 @@
 import { useState } from "react";
 
-interface UserProps {
-  name: string;
-  age: number;
-  city: string;
+interface Post {
+  title: string;
+  content: string;
+  author: string;
 }
 
-const UserProfile = () => {
-  const [user, setUser] = useState<UserProps>({
-    name: "Ali",
-    age: 25,
-    city: "Tehran",
+const BlogPost = () => {
+  const [post, setPost] = useState<Post>({
+    title: "My first Post",
+    content: "This is a simple content",
+    author: "Ali",
   });
 
-  const changeName = () => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      name: "Mehdi",
+  const changeTitle = () => {
+    setPost((prevPost) => ({
+      ...prevPost,
+      title: "Updated Post Title",
     }));
   };
 
-  const increaseAge = () => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      age: prevUser.age + 1,
+  const changeContent = () => {
+    setPost((prevPost) => ({
+      ...prevPost,
+      content: "This is the new content for the post.",
     }));
   };
 
-  const changeCity = (newCity: string) => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      city: newCity,
+  const changeAuthor = (newAuthor: string) => {
+    setPost((prevPost) => ({
+      ...prevPost,
+      author: newAuthor,
     }));
   };
 
   return (
     <div>
-      <h2>User information</h2>
-      <p>Name: {user.name}</p>
-      <p>Age: {user.age}</p>
-      <p>City: {user.city}</p>
+      <h2>Blog Post</h2>
+      <p>Title: {post.title}</p>
+      <p>Content: {post.content}</p>
+      <p>Author: {post.author}</p>
       <hr />
-      <button onClick={changeName}>Change Name</button>
-      <button onClick={increaseAge}>Increasing Age</button>
-      <button onClick={() => changeCity("Shiraz")}>
-        Change the city of Shiraz
+      <button onClick={changeTitle}>Change Title</button>
+      <button onClick={changeContent}>Change Content</button>
+      <button onClick={() => changeAuthor("Mehdi")}>
+        Change Author to Mehdi
       </button>
     </div>
   );
@@ -53,7 +53,7 @@ const UserProfile = () => {
 const App = () => {
   return (
     <div>
-      <UserProfile />
+      <BlogPost />
     </div>
   );
 };
